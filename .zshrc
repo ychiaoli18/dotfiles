@@ -80,7 +80,17 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+function genmockery () {
+  dir=`mktemp -d` && cp $1 $dir && cd $dir && content=`mockery -name=$2 -print` && cd - &> /dev/null && rm -rf $dir && echo $content
+}
 . ~/.nvm/nvm.sh
+
+eval $(docker-machine env)
+
+function circle {
+    open http://circleci.com/dashboard
+}
+
 export LC_CTYPE=C 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -88,11 +98,10 @@ export LANG=en_US.UTF-8
 alias ctags="`brew --prefix`/bin/ctags"
 alias vim=/usr/local/bin/vim
 
-export PATH="/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export GOROOT=/usr/local/go
+export PATH="/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOROOT/bin"
 export GOBIN=/Users/yunchiaoli/go/bin
 export GO15VENDOREXPERIMENT=1
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin/"
-export GOPATH="$GOPATH:/usr/local/go"
-
+export CDPATH=.:$HOME:$GOPATH/src/:$GOPATH/src/github.com:$GOPATH/src/github.com/17media:$HOME/codebase

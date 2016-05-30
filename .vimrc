@@ -84,43 +84,38 @@ set showmatch
 set mat=2
 
 " No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
+" set noerrorbells
+" set novisualbell
+" set t_vb=
+" set tm=500
 
 " Add a bit extra margin to the left
-set foldcolumn=1
+" set foldcolumn=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" enable folding
-set foldenable
-
-" open most folds by default
-set foldlevelstart=10
-
-" 10 nested fold max
-set foldnestmax=10
-
-" space open/closes folds
-nnoremap <space> za
-
-" fold based on indent level
-set foldmethod=indent
+" " enable folding
+" set foldenable
+"
+" " open most folds by default
+" set foldlevelstart=10
+"
+" " 10 nested fold max
+" set foldnestmax=10
+"
+" " space open/closes folds
+" nnoremap <space> za
+"
+" " fold based on indent level
+" set foldmethod=indent
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable 
-
-try
-    colorscheme desert
-catch
-endtry
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -135,7 +130,6 @@ set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -267,12 +261,12 @@ if has("mac") || has("macunix")
   vmap <D-k> <M-k>
 endif
 
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
+" " Delete trailing white space on save, useful for Python and CoffeeScript ;)
+" func! DeleteTrailingWS()
+"   exe "normal mz"
+"   %s/\s\+$//ge
+"   exe "normal `z"
+" endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
@@ -406,14 +400,14 @@ au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>gr <Plug>(go-rename)
 au FileType go nmap <Leader>ga :GoAlternate<CR>
 
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_interfaces = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
+" let g:go_highlight_functions = 1
+" let g:go_highlight_methods = 1
+" let g:go_highlight_structs = 1
+" let g:go_highlight_interfaces = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
-let g:go_fmt_fail_silently = 1
+let g:go_fmt_fail_silently = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -478,11 +472,11 @@ endfunction
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" Plugin 'sjl/gundo.vim'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'fatih/vim-go'
-Plugin 'sjl/gundo.vim'
 Plugin 'epmatsw/ag.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
@@ -491,6 +485,7 @@ Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'mxw/vim-jsx'
 Plugin 'benmills/vimux'
+Plugin 'dracula/vim'
 
 call vundle#end()
 
