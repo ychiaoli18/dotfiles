@@ -6,6 +6,7 @@ plugins=(git zsh-autosuggestions golang jira redis-cli gitignore colored-man col
 
 source $ZSH/oh-my-zsh.sh
 
+export PATH=$PATH:/usr/local/bin
 export LC_CTYPE=C
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -52,3 +53,9 @@ function docker-clean-aufs {
 
 export NVM_DIR=$HOME/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then source '/Users/yunchiaoli/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source '/Users/yunchiaoli/google-cloud-sdk/completion.zsh.inc'; fi
