@@ -5,7 +5,7 @@ SRC=$PWD
 cd $HOME
 
 # link rc files
-for config in .vimrc .zshrc .tmux.conf; do
+for config in .vimrc .zshrc .tmux.conf .gitconfig; do
   echo "Creating soft link for $config ..."
   ln -sf $SRC/$config .
 done
