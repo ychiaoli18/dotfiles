@@ -418,6 +418,8 @@ let g:go_fmt_fail_silently = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>st :StripWhitespace<cr>
+
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
@@ -472,6 +474,16 @@ function! <SID>BufcloseCloseIt()
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Dash
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>ds :Dash<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ALE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <C-n> <Plug>(ale_next_wrap)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vundle Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set the runtime path to include Vundle and initialize
@@ -497,10 +509,13 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'rizzatti/dash.vim'
+Plugin 'w0rp/ale'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'sbdchd/neoformat'
 
 call vundle#end()
 
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
-
