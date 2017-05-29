@@ -10,6 +10,9 @@ for config in .vimrc .zshrc .tmux.conf .gitconfig; do
   ln -sf "$SRC/$config" .
 done
 
+# python related
+pip install powerline-status
+
 # Bin utils
 cp -r "$SRC"/bin "$HOME"/bin
 cd "$HOME"/bin || exit

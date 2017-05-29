@@ -5,10 +5,13 @@
   lg = log --graph --pretty=format:'%C(cyan bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(magenta bold)(%cr)%Creset' --abbrev-commit --date=relative
   co = checkout
   st = status
+  ci = commit
+  br = branch
 [color]
   diff = auto
   status = auto
   branch = auto
+  ui = true
 [core]
   editor = vim
   pager = less
