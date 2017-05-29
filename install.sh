@@ -35,6 +35,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 nvm install stable && nvm use stable && nvm alias default stable
 
+npm install --global pure-prompt
+
 if python -mplatform | grep -qi Ubuntu; then
   chmod +x install.ubuntu.sh && ./install.ubuntu.sh
 elif [ "$(uname)" == "Darwin" ]; then

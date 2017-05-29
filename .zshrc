@@ -1,15 +1,31 @@
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="daveverwer"
-
 plugins=(git zsh-autosuggestions golang jira redis-cli gitignore colored-man colorize github jira vagrant virtualenv pip python brew osx zsh-syntax-highlighting docker)
 
 source $ZSH/oh-my-zsh.sh
 
+ZSH_THEME=""
+autoload -U promptinit; promptinit
+prompt pure
+
+# environment variables
 export PATH=$PATH:/usr/local/bin
 export LC_CTYPE=C
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+# go related environment variables
+export GOPATH=$(go env GOPATH)
+export PATH=$PATH:$(go env GOPATH)/bin
+
+# node related environment variables
+export NVM_DIR=$HOME/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# vim key binding
+bindkey -v
+bindkey "^R" history-incremental-search-backward
+bindkey "^S" history-incremental-search-forward
 
 # fasd related
 eval "$(fasd --init auto)"
@@ -51,11 +67,11 @@ function docker-clean-aufs {
     sudo service docker start
 }
 
-export NVM_DIR=$HOME/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then source '/Users/yunchiaoli/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then source "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source '/Users/yunchiaoli/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
+# Clang related tools
+export PATH="/usr/local/opt/llvm/bin:$PATH"
