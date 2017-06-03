@@ -3,6 +3,9 @@
 brew update && brew install zsh zsh-completions silversearcher-ag exuberant-ctags tig
 chsh -s "$(which zsh)"
 
+# install docker and docker-toolbox
+brew update && brew cask install docker docker-toolbox
+
 # install go
 mkdir -p "$HOME"/go
 wget https://storage.googleapis.com/golang/go1.8.darwin-amd64.pkg

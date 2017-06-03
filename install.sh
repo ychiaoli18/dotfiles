@@ -10,13 +10,6 @@ for config in .vimrc .zshrc .tmux.conf .gitconfig; do
   ln -sf "$SRC/$config" .
 done
 
-# python related
-pip install powerline-status
-
-# Bin utils
-cp -r "$SRC"/bin "$HOME"/bin
-cd "$HOME"/bin || exit
-
 # Zsh plugins
 ZSH_DIR=$HOME/bin/zsh
 mkdir -p "$ZSH_DIR"
@@ -32,6 +25,8 @@ vim +BundleInstall
 git clone https://github.com/clvv/fasd
 cd fasd && sudo make install
 
+cd "$SRC"
+
 # install nvm, node and npm
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
@@ -40,8 +35,9 @@ nvm install stable && nvm use stable && nvm alias default stable
 
 npm install --global pure-prompt
 
+# install platform specific settings
 if python -mplatform | grep -qi Ubuntu; then
-  chmod +x install.ubuntu.sh && ./install.ubuntu.sh
+  chmod +x ./install.ubuntu.sh && ./install.ubuntu.sh
 elif [ "$(uname)" == "Darwin" ]; then
-  chmod +x install.mac.sh && ./install.mac.sh
+  chmod +x ./install.mac.sh && ./install.mac.sh
 fi
