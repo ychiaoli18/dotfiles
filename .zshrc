@@ -75,3 +75,6 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/google
 
 # Clang related tools
 export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+# 17 related
+if [ -f "$GOPATH/src/github.com/17media/api/env.sh" ]; then source "$GOPATH/src/github.com/17media/api/env.sh"; fi
