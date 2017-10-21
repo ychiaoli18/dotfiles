@@ -44,6 +44,10 @@ if [ ! -S ~/.ssh/ssh_auth_sock ]; then
     eval `ssh-agent`
       ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
     fi
+    for pem in ~/Dropbox/17/*.pem; do
+      chmod 400 $pem; ssh-add $pem;
+    done
+    ssh-add ~/.ssh/id_rsa
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 ssh-add -l | grep "The agent has no identities" && ssh-add
 
@@ -78,3 +82,10 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # 17 related
 if [ -f "$GOPATH/src/github.com/17media/api/env.sh" ]; then source "$GOPATH/src/github.com/17media/api/env.sh"; fi
+
+# Reinstall jsctags
+function install_jsctags {
+  npm install jsctags
+}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

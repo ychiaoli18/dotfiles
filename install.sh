@@ -10,6 +10,14 @@ for config in .vimrc .zshrc .tmux.conf .gitconfig; do
   ln -sf "$SRC/$config" .
 done
 
+# python related
+pip install powerline-status
+pip install jedi
+
+# Bin utils
+cp -r "$SRC"/bin "$HOME"/bin
+cd "$HOME"/bin || exit
+
 # Zsh plugins
 ZSH_DIR=$HOME/bin/zsh
 mkdir -p "$ZSH_DIR"
@@ -19,7 +27,8 @@ git clone git://github.com/zsh-users/zsh-autosuggestions "$ZSH_DIR"/zsh-autosugg
 # vim
 mkdir -p ~/.vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +BundleInstall
+vim +BundleInstall +qall
+vim +BundleInstall +qall
 
 # fasd
 git clone https://github.com/clvv/fasd

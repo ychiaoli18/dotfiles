@@ -1,6 +1,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set viminfo='100,f1
+
 " Sets how many lines of history VIM has to remember
 set history=500
 
@@ -14,6 +16,9 @@ let g:mapleader = ","
 
 " Fast saving
 nmap <leader>w :w!<cr>
+
+" Change working directory to current file directory
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -353,11 +358,11 @@ nnoremap <leader>u :GundoToggle<CR>
 " => Plugin: CtrlP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP settings
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+" let g:ctrlp_match_window = 'bottom,order:ttb'
+" let g:ctrlp_switch_buffer = 0
+" let g:ctrlp_working_path_mode = 0
+" let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin: tagbar
@@ -399,7 +404,7 @@ au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 
 au FileType go nmap <Leader>gd <Plug>(go-def)
-au FileType go nmap <Leader>gdv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gdv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
@@ -473,6 +478,12 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Prettier
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap gp :silent %!prettier --stdin --trailing-comma all --single-quote<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Dash
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -491,11 +502,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Plugin 'sjl/gundo.vim'
+" Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'benmills/vimux'
 Plugin 'bling/vim-airline'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'dracula/vim'
 Plugin 'elzr/vim-json'
 Plugin 'epmatsw/ag.vim'
@@ -513,9 +524,50 @@ Plugin 'rizzatti/dash.vim'
 Plugin 'w0rp/ale'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'sbdchd/neoformat'
+Plugin 'junegunn/fzf'
+Plugin 'moll/vim-node'
+Plugin 'davidhalter/jedi-vim'
 
 call vundle#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-node
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap gl ^f'gf
+autocmd User Node
+  \ if &filetype == "javascript" |
+  \   nmap <buffer> <C-w>f ^f'<Plug>NodeVSplitGotoFile |
+  \   nmap <buffer> <C-w><C-f> ^f'<Plug>NodeVSplitGotoFile |
+  \ endif
+
 
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => FZF
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <c-p> :FZF<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Cheatsheet
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-node:
+"   Use gf inside require("...") to jump to source and module files.
+"   Use gl to jump to source and module files instead of running gf only on the path.
+"   Use [I on any keyword to look for it in the current and required files.
+"   Use :Nedit module_name to edit the main file of a module.
+"   Use :Nedit module_name/lib/foo to edit its lib/foo.js file.
+"   Use :Nedit . to edit your Node projects main (usually index.js) file.
+"
+" jump:
+"   Use gd to go to definition
+"   Use ctrl-o to go back to older cursor position
+"   Use ctrl-i to go to newer cursor position
+"
+" jedi-vim (python)
+"   Use :help jedi-vim to open the manual
+"   Use <leader>d to go to definition
+"   Use <leader>g to go to assignment
+"   Use <leader>r to rename
